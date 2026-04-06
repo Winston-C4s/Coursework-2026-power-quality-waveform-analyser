@@ -9,6 +9,11 @@ ________________________________________
 
 
 2. Program Design (Pseudocode/Flowcharts)
+3. CSV file
+load file
+save to struct array
+Analysis of three-phase voltage
+Print the analysis results and write them to results.txt
 Main Program Flowchart
    ↓
 Get command-line argument
