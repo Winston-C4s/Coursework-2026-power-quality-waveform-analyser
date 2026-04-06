@@ -40,3 +40,7 @@ Initial version complete:
 # Future Work
 - Add waveform analysis (RMS, frequency)
 - Add more advanced processing or visualisation
+- Implement RMS calculation
+- Add peak-to-peak analysis
+- Detect DC offset
+- Implement clipping detection
