@@ -14,4 +14,7 @@ typedef struct {
     double thd;
 } WaveformSample;
 
+// a function to calculate RMS for phase A voltage
+double calculate_rms_A(WaveformSample *samples, size_t count);
+
 #endif
