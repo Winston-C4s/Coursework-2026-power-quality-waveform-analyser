@@ -29,6 +29,9 @@ int main(int argc, char *argv[]) {
 
      // show how many samples were loaded
     printf("Loaded %zu samples successfully.\n", sample_count);
+    // calculate RMS value using waveform samples and print it for the result
+    double rmsA = calculate_rms_A(samples, sample_count);
+    printf("RMS Voltage A: %.2f V\n", rmsA);
 
     //  to print out the first 10 samples (I set it 10 to prevent the output fill the screen)
     for (size_t i = 0; i < 10 && i < sample_count; i++) {
