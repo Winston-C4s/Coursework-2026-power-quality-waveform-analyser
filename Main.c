@@ -1,57 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "io.h"         // include load_csv_data
-#include "waveform.h"   // include WaveformSample 
+#include "io.h"         //-load_csv_data is used here
+#include "waveform.h"   //-WaveformSample and RMS function are used here
 
-// main function: get CSV file name, load data, and print a few samples
+// -----------Update-4-Display Loaded Data
+// -----------Update-5-Phase A RMS Value Calculation
+
 int main(int argc, char *argv[]) {
-    
-     // to check the user must provide the CSV file name
+
+    //--------Update-4: Check command-line input
     if (argc != 2) {
-        //  if the variable argc is not equal to 2, it means the user did not provide the correct number of arguments, so we print out a usage message to inform the user how to run the program correctly
         printf("Usage: %s <csv_file>\n", argv[0]);
-        // return 1 to indicate that the program encountered an error due to incorrect usage and will exit without further execution
         return 1;
     }
-
-    // store the number of samples loaded from the CSV file
+    //--------Update-4: Prepare a variable to store sample count, this will store how many rows were loaded from the CSV
     size_t sample_count = 0;
-    
-     // load the CSV data into memory
+
+    //---------Update-3/4: Load CSV data into memory
     WaveformSample *samples = load_csv_data(argv[1], &sample_count);
 
-      // to stop the program if the file could not be opened or read
-        if (samples == NULL) {
+    //--------stop the program if loading failed
+    if (samples == NULL) {
         printf("Error: could not open or read the CSV file.\n");
-        // return 1 to indicate that the program encountered an error and will exit
         return 1;
     }
 
-     // show how many samples were loaded
+    //--------Update-4: Show loading result, this helps confirm that the CSV file was read correctly
     printf("Loaded %zu samples successfully.\n", sample_count);
-    // calculate RMS value using waveform samples and print it for the result
+
+    //--------Update-5: Calculate RMS for phase A, this is the first analysis result added to the program
     double rmsA = calculate_rms_A(samples, sample_count);
     printf("RMS Voltage A: %.2f V\n", rmsA);
 
-    //  to print out the first 10 samples (I set it 10 to prevent the output fill the screen)
+    // Update-4: Print the first 10 samples (only for checking the loaded waveform data)
     for (size_t i = 0; i < 10 && i < sample_count; i++) {
-        // print the number of the sample being printed
         printf("Sample %zu\n", i);
-        // print the sample's time value
         printf("Time: %f\n", samples[i].time);
-        // print the sample's current A value
         printf("Voltage A: %f\n", samples[i].voltageA);
-        // print the sample's current B value
         printf("Voltage B: %f\n", samples[i].voltageB);
-        // print the sample's current C value
         printf("Voltage C: %f\n", samples[i].voltageC);
-        // change the lines every time when the message being printed to make the output more clear
         printf("\n");
     }
-
-    // release the memory 
+    //----Update-4: Free allocated memory, always free memory after finishing the function
     free(samples);
-    
-    // return 0 to indicate that the program executed successfully and will exit without errors
+
     return 0;
 }
