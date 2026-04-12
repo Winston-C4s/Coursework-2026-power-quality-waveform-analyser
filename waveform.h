@@ -3,6 +3,8 @@
 
 #include <stddef.h>
 
+// ----------- Update-2: Waveform Data Structure
+// this struct stores one row of waveform data from the CSV file
 typedef struct {
     double time;
     double voltageA;
@@ -14,7 +16,8 @@ typedef struct {
     double thd;
 } WaveformSample;
 
-// a function to calculate RMS for phase A voltage
+// ----------- Update-5: Phase A RMS Value Calculation
+// To declare the function use to calculate RMS for phase A voltage
 double calculate_rms_A(WaveformSample *samples, size_t count);
 
 #endif
