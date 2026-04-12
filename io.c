@@ -2,51 +2,49 @@
 #include <stdlib.h>
 #include "io.h"
 
-// function to load waveform data from a CSV file
-// returns a pointer to an array of WaveformSample
-// and it writes the number of samples into *count
+// ----------- Update-3: CSV File Loading
+// This file reads waveform data from a CSV file
+// and stores it into a WaveformSample array
+
 WaveformSample *load_csv_data(const char *filename, size_t *count) {
 
-    // try to open the file in read mode
+    // -------- Update-3: Open the CSV file
     FILE *file = fopen(filename, "r");
 
-    // if the file cannot be opened, return NULL
+    // stop if the file cannot be opened
     if (file == NULL) {
         return NULL;
     }
 
-    // buffer to store each line from the file
+    // -------- Update-3: Create a buffer for one line of text
     char line[256];
 
-    // skip the first line because it is the header
-    // most CSV files have column names in the first row
-    // we do not want to parse that as data
+    // -------- Update-3: Skip the header row
+    // the first row contains column names, not waveform data
     if (fgets(line, sizeof(line), file) == NULL) {
-        // if we cannot even read the first line, something is wrong
         fclose(file);
         return NULL;
     }
 
-    // set a maximum number of samples we expect
+    // -------- Update-3: Set the maximum number of samples
     size_t max_samples = 1000;
 
-    // index to track how many valid samples we have read
+    // -------- Update-3: Keep track of valid samples
     size_t i = 0;
 
-    // allocate memory to store all samples
+    // -------- Update-2/3: Allocate memory for the sample array
     WaveformSample *samples = malloc(max_samples * sizeof(WaveformSample));
 
-    // check if memory allocation failed
+    // stop if memory allocation failed
     if (samples == NULL) {
         fclose(file);
         return NULL;
     }
 
-    // read the file line by line until the end
+    // -------- Update-3: Read the file line by line
     while (fgets(line, sizeof(line), file) != NULL) {
 
-        // parse the line using sscanf
-        // 8 values in each row
+        // 8 values from one CSV row
         int result = sscanf(
             line,
             "%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf",
@@ -60,19 +58,18 @@ WaveformSample *load_csv_data(const char *filename, size_t *count) {
             &samples[i].thd
         );
 
-        // only store the data if all 8 values were read correctly
-        // if result is not 8, the line is incomplete
+        // only save the row if all 8 values were read correctly
         if (result == 8) {
             i++;
         }
     }
 
-    // close the file after finishing reading
+    // -------- Update-3: Close the file after reading
     fclose(file);
 
-    // store the number of valid samples read
+    // -------- Update-3: Return the number of valid samples
     *count = i;
 
-    // return the pointer to the sample array
+    // return the pointer to the waveform sample array
     return samples;
 }
