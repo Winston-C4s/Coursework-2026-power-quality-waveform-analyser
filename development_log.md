@@ -78,7 +78,7 @@ To represent each row of CSV data in a structured way
 # Update 3 – CSV File Loading
 In this update, I try to load the CSV file reading functionality
 
-#Objective
+# Objective
 To load waveform data from a CSV file into memory
 
 # Implementation
@@ -101,13 +101,7 @@ To verify that the CSV data is correctly loaded
 Attempted to calculate the RMS value of phase A voltage
 
 # Objective
-
 The objective of this update is to begin analyzing waveform data
-
-# Implementation
-- Added a new function `calculate_rms_A()` to `waveform.c`
-- Declared a new function in `waveform.h` for use in other files
-- Called the function in `Main.c` and printed the results
 
 # Formula Used
 The root mean square (RMS) value is calculated using the following formula:
@@ -134,6 +128,42 @@ Future improvements will include:
 - Calculating the RMS values ​​of phases B and C
 - Peak-to-peak voltage
 - DC offset calculation
+
+# Update 6 – Phase A Peak-to-Peak Calculation
+
+In this update, I implemented the peak-to-peak calculation for phase A voltage.
+# Objective
+To measure the full voltage range of the waveform from the highest point to the lowest point.
+
+# Implementation
+- Added `peak_to_peak_A()` in `waveform.c`
+- Declared the function in `waveform.h`
+- Called the function in `Main.c` and printed the result
+
+# Formula Used
+Peak-to-Peak = Vmax - Vmin
+
+Where:
+- Vmax = maximum voltage value
+- Vmin = minimum voltage value
+
+# Code Explanation
+The function loops through all waveform samples:
+- compares each phase A voltage value
+- updates the maximum voltage if a larger value is found
+- updates the minimum voltage if a smaller value is found
+- returns the difference between the maximum and minimum values
+
+# Results
+- Peak-to-Peak Voltage A: 650.00 V
+- This result is close to the expected value for a 230 V RMS waveform
+
+# Implementation
+- Added a new function `calculate_rms_A()` to `waveform.c`
+- Declared a new function in `waveform.h` for use in other files
+- Called the function in `Main.c` and printed the results
+
+
 
 9. Full Code (in Zip File) uploaded externally to Blackboard on:
 
