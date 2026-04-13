@@ -37,6 +37,13 @@ int main(int argc, char *argv[]) {
     //--------Update-7: Calculate DC Offset for phase A, this is the third analysis result added to the program
     double dcA = DC_offset_A(samples, sample_count);
     printf("DC Offset Voltage A: %.2f V\n", dcA);
+    //--------Update-8: Clipping detection for phase A, this is the fourth analysis result added to the program
+    int clippingA = clipping_detection_A(samples, sample_count);
+    if (clippingA > 0) {
+        printf("Clipping count A: %d\n", clippingA);
+    } else {
+        printf("No clipping detected in Voltage A.\n");
+    }
 
 
     // Update-4: Print the first 10 samples (only for checking the loaded waveform data)
