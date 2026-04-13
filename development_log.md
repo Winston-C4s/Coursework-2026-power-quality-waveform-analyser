@@ -118,7 +118,7 @@ This function iterates through all samples:
 - Divides by the total number of samples
 - Takes the square root using the `sqrt()` function in `<math.h>`
 
-#Results
+# Results
 - Number of loaded sample points
 - Phase A RMS voltage
 - First few waveform sample points used for verification
