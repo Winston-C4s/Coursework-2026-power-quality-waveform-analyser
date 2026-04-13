@@ -29,11 +29,15 @@ int main(int argc, char *argv[]) {
     printf("Loaded %zu samples successfully.\n", sample_count);
 
     //--------Update-5: Calculate RMS for phase A, this is the first analysis result added to the program
-    double rmsA = calculate_rms_A(samples, sample_count);
+    double rmsA = rms_A(samples, sample_count);
     printf("RMS Voltage A: %.2f V\n", rmsA);
     //--------Update-6: Calculate Peak-to-Peak for phase A, this is the second analysis result added to the program
     double ptpA = peak_to_peak_A(samples, sample_count);
     printf("Peak-to-Peak Voltage A: %.2f V\n", ptpA);
+    //--------Update-7: Calculate DC Offset for phase A, this is the third analysis result added to the program
+    double dcA = DC_offset_A(samples, sample_count);
+    printf("DC Offset Voltage A: %.2f V\n", dcA);
+
 
     // Update-4: Print the first 10 samples (only for checking the loaded waveform data)
     for (size_t i = 0; i < 10 && i < sample_count; i++) {
