@@ -111,7 +111,7 @@ Where:
 - V = The value of voltage samples
 - N = Number of samples
 
-#Code Explanation
+# Code Explanation
 This function iterates through all samples:
 - Squares each voltage value
 - Adds them together
@@ -132,6 +132,7 @@ Future improvements will include:
 # Update 6 – Phase A Peak-to-Peak Calculation
 
 In this update, I implemented the peak-to-peak calculation for phase A voltage.
+
 # Objective
 To measure the full voltage range of the waveform from the highest point to the lowest point.
 
@@ -163,7 +164,32 @@ The function loops through all waveform samples:
 - Declared a new function in `waveform.h` for use in other files
 - Called the function in `Main.c` and printed the results
 
+# Update 7 – Phase A DC Offset Calculation
 
+In this update, I added the DC offset calculation for phase A voltage
+
+# Objective
+The goal of this step was to check whether the waveform is centred around zero, or if it is shifted slightly up or down.
+
+# Implementation
+- Added `dc_offset_A()` in `waveform.c`
+- Declared the function in `waveform.h`
+- Called the function in `Main.c`
+- Printed the result in the terminal
+
+# Formula Used
+DC Offset = (1/N) × Σ(V)
+
+Where:
+- V = voltage value
+- N = number of samples
+
+# Code Explanation
+The function goes through all phase A voltage samples, adds them together, and then divides the total by the number of samples. This gives the average voltage value, which is the DC offset.
+
+# Results
+The DC offset for phase A was printed in the terminal
+The result should be close to 0 V for a normal AC waveform
 
 9. Full Code (in Zip File) uploaded externally to Blackboard on:
 
