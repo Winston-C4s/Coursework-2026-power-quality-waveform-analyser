@@ -191,6 +191,28 @@ The function goes through all phase A voltage samples, adds them together, and t
 The DC offset for phase A was printed in the terminal
 The result should be close to 0 V for a normal AC waveform
 
+#Update 8 – Phase A Clipping Detection
+
+In this update, I implemented clipping detection for phase A voltage.
+
+# Objective
+To count how many waveform samples reach the clipping threshold.
+
+# Implementation
+- Added `clipping_detection_A()` in `waveform.c`
+- Declared the function in `waveform.h`
+- Called the function in `Main.c` and displayed the result
+
+# Rule Used
+A sample is counted as clipped when: |V| ≥ 324.9 V
+
+# Code Explanation
+The function loops through all phase A voltage samples and checks whether the voltage reaches or exceeds the clipping threshold. If it does, the counter increases by one. The function then returns the total number of clipped samples.
+
+# Results
+- Clipping count A was displayed in the terminal
+- The program reported 20 clipped samples for phase A
+
 9. Full Code (in Zip File) uploaded externally to Blackboard on:
 
 10. References
