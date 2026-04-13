@@ -23,4 +23,6 @@ double rms_A(WaveformSample *samples, size_t count);
 double peak_to_peak_A(WaveformSample *samples, size_t count);
 // ----------- Update-7: Phase A DC Offset Value Calculation
 double DC_offset_A(WaveformSample *samples, size_t count);
+//----------- Update-8: clipping detection for phase A
+int clipping_detection_A(WaveformSample *samples, size_t count);
 #endif
