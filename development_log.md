@@ -191,7 +191,7 @@ The function goes through all phase A voltage samples, adds them together, and t
 The DC offset for phase A was printed in the terminal
 The result should be close to 0 V for a normal AC waveform
 
-#Update 8 – Phase A Clipping Detection
+# Update 8 – Phase A Clipping Detection
 
 In this update, I implemented clipping detection for phase A voltage.
 
