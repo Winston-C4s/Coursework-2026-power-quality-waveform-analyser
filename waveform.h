@@ -19,5 +19,6 @@ typedef struct {
 // ----------- Update-5: Phase A RMS Value Calculation
 // To declare the function use to calculate RMS for phase A voltage
 double calculate_rms_A(WaveformSample *samples, size_t count);
-
+// ----------- Update-6: Phase A Peak-to-Peak Value Calculation
+double peak_to_peak_A(WaveformSample *samples, size_t count);
 #endif
