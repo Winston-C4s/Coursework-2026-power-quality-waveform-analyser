@@ -58,3 +58,20 @@ double DC_offset_A(WaveformSample *samples, size_t count) {
     // divide by the number of samples
     return sum / count;
 }
+int clipping_detection_A(WaveformSample *samples, size_t count) {
+
+    // -------- Update-8: store how many clipped samples are found
+    int clip_count = 0;
+
+    // -------- Update-8: go through every waveform sample
+    for (size_t i = 0; i < count; i++) {
+
+        // if phase A voltage reaches the clipping threshold, count it
+        if (samples[i].voltageA >= 324.9 || samples[i].voltageA <= -324.9) {
+            clip_count++;
+        }
+    }
+
+    // -------- Update-8: return the number of clipped samples
+    return clip_count;
+}
