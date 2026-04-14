@@ -213,6 +213,33 @@ The function loops through all phase A voltage samples and checks whether the vo
 - Clipping count A was displayed in the terminal
 - The program reported 20 clipped samples for phase A
 
+# Update 9 – Phase A Compliance Check
+
+In this update, I added a compliance check for phase A.
+
+# Objective
+The aim was to check whether the RMS voltage of phase A falls inside the normal standard range.
+
+# Implementation
+- Added `compliance_check_A()` in `waveform.c`
+- Declared the function in `waveform.h`
+- Called the function in `Main.c`
+- Displayed the result in the terminal
+
+# Rule Used
+A phase passes the compliance check if:
+
+207 V ≤ VRMS ≤ 253 V
+
+# Code Explanation
+The function uses the RMS result of phase A and checks whether it is inside the valid range.
+If it is inside the range, the function returns `1`.
+If not, it returns `0`.
+
+# Results
+The program showed that phase A is compliant with standards
+
+
 9. Full Code (in Zip File) uploaded externally to Blackboard on:
 
 10. References
