@@ -75,3 +75,14 @@ int clipping_detection_A(WaveformSample *samples, size_t count) {
     // -------- Update-8: return the number of clipped samples
     return clip_count;
 }
+    int compliance_check_A(WaveformSample *samples, size_t count) {
+        // -------- Update-9: calculate the RMS value for phase A
+        double rms_value = rms_A(samples, count);
+
+        // -------- Update-9: if phase A voltage exceeds the compliance limit, count it
+        if (rms_value >= 207.0 && rms_value <= 253.0) {
+            return 1; // if is compliant
+        } else {
+            return 0; // if is non-compliant
+        }
+    }
