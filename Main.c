@@ -44,6 +44,13 @@ int main(int argc, char *argv[]) {
     } else {
         printf("No clipping detected in Voltage A.\n");
     }
+    //--------Update-9: Compliance check for phase A, this is the fifth analysis result added to the program
+    int complianceA = compliance_check_A(samples, sample_count);
+    if (complianceA == 1) {
+        printf("Voltage A is compliant\n");
+    } else {
+        printf("Voltage A is not compliant\n");
+    }
 
 
     // Update-4: Print the first 10 samples (only for checking the loaded waveform data)
