@@ -25,4 +25,6 @@ double peak_to_peak_A(WaveformSample *samples, size_t count);
 double DC_offset_A(WaveformSample *samples, size_t count);
 //----------- Update-8: clipping detection for phase A
 int clipping_detection_A(WaveformSample *samples, size_t count);
+//----------- Update-9: compliance check for phase A
+int compliance_check_A(WaveformSample *samples, size_t count);
 #endif
