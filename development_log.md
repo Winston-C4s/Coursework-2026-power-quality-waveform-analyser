@@ -239,7 +239,33 @@ If not, it returns `0`.
 # Results
 The program showed that phase A is compliant with standards
 
+# Update 10 – Mean Frequency Calculation
 
+In this update, I added the mean frequency calculation for the waveform data.
+
+# Objective
+The aim of this step was to calculate the average frequency of the loaded waveform samples.
+
+# Implementation
+- Added `mean_frequency_A()` in `waveform.c`
+- Declared the function in `waveform.h`
+- Called the function in `Main.c`
+- Printed the mean frequency in the terminal
+
+# Formula Used
+Mean Frequency = (1/N) × Σ(f)
+
+Where:
+- f = frequency value
+- N = number of samples
+
+# Code Explanation
+The function goes through all waveform samples, adds all frequency values together, and divides the total by the number of samples. This gives the average frequency of the dataset.
+
+# Results
+- Mean Frequency A: 50.03 Hz
+- This result is within the expected range for the dataset
+- 
 9. Full Code (in Zip File) uploaded externally to Blackboard on:
 
 10. References
