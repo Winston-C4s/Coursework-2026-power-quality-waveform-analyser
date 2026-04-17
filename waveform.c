@@ -86,3 +86,18 @@ int clipping_detection_A(WaveformSample *samples, size_t count) {
             return 0; // if is non-compliant
         }
     }
+double mean_frequency_A(WaveformSample *samples, size_t count) {
+    // -------- Update-10: store the total of frequency values
+    double sum_freq = 0.0;
+
+    // -------- Update-10: go through every waveform sample
+    for (size_t i = 0; i < count; i++) {
+
+        // add the frequency value to the total
+        sum_freq += samples[i].frequency;
+    }
+
+    // -------- Update-10: return the mean frequency value
+    // divide by the number of samples
+    return sum_freq / count;
+}
