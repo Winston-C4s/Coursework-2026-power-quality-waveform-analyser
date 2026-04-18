@@ -293,6 +293,30 @@ The function goes through all waveform samples, adds all power factor values tog
 - Mean Power Factor A: 0.96
 - This result is within the expected range for the dataset
 
-9. Full Code (in Zip File) uploaded externally to Blackboard on:
+# Update 12 – Mean THD Calculation
+
+In this update, I added the mean THD calculation for the waveform data.
+
+# Objective
+The aim of this step was to calculate the average total harmonic distortion (THD) of the loaded waveform samples.
+
+# Implementation
+- Added `mean_thd_A()` in `waveform.c`
+- Declared the function in `waveform.h`
+- Called the function in `Main.c`
+- Printed the mean THD result in the terminal
+
+# Formula Used
+Mean THD = (1/N) × Σ(THD)
+
+Where:
+- THD = total harmonic distortion value
+- N = number of samples
+
+# Code Explanation
+The function goes through all waveform samples, adds all THD values together, and divides the total by the number of samples. This gives the average THD of the dataset.
+
+# Results
+- Mean THD A: 2.09%
 
 10. References
