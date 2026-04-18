@@ -31,4 +31,6 @@ int compliance_check_A(WaveformSample *samples, size_t count);
 double mean_frequency_A(WaveformSample *samples, size_t count);
 //----------- Update-11: mean power factor analysis for phase A
 double mean_power_factor_A(WaveformSample *samples, size_t count);
+//----------- Update-12: mean THD analysis for phase A
+double mean_THD_A(WaveformSample *samples, size_t count);
 #endif
