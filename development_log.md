@@ -265,7 +265,34 @@ The function goes through all waveform samples, adds all frequency values togeth
 # Results
 - Mean Frequency A: 50.03 Hz
 - This result is within the expected range for the dataset
-- 
+
+# Update 11 – Mean Power Factor Calculation
+
+In this update, I added the mean power factor calculation for the waveform data.
+
+# Objective
+The aim of this step was to calculate the average power factor of the loaded waveform samples.
+
+# Implementation
+- Added `mean_power_factor_A()` in `waveform.c`
+- Declared the function in `waveform.h`
+- Called the function in `Main.c`
+- Printed the mean power factor in the terminal
+
+# Formula Used
+Mean Power Factor = (1/N) × Σ(PF)
+
+Where:
+- PF = power factor value
+- N = number of samples
+
+# Code Explanation
+The function goes through all waveform samples, adds all power factor values together, and divides the total by the number of samples. This gives the average power factor of the dataset.
+
+# Results
+- Mean Power Factor A: 0.96
+- This result is within the expected range for the dataset
+
 9. Full Code (in Zip File) uploaded externally to Blackboard on:
 
 10. References
