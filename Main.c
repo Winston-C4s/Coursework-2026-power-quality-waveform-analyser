@@ -51,10 +51,12 @@ int main(int argc, char *argv[]) {
     } else {
         printf("Voltage A is not compliant\n");
     }
-            //--------Update-10: Mean frequency analysis for phase A, this is the sixth analysis result added to the program
+        //--------Update-10: Mean frequency analysis for phase A, this is the sixth analysis result added to the program
     double meanFreqA = mean_frequency_A(samples, sample_count);
     printf("Mean Frequency A: %.2f Hz\n", meanFreqA);
-
+    //--------Update-11: Mean power factor analysis for phase A, this is the seventh analysis result added to the program
+    double meanPFA = mean_power_factor_A(samples, sample_count);
+    printf("Mean Power Factor A: %.2f\n", meanPFA);
 
     // Update-4: Print the first 10 samples (only for checking the loaded waveform data)
     for (size_t i = 0; i < 10 && i < sample_count; i++) {
