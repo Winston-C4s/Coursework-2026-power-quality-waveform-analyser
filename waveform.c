@@ -116,3 +116,18 @@ double mean_power_factor_A(WaveformSample *samples, size_t count) {
     // divide by the number of samples
     return sum_pf / count;
 }
+double mean_THD_A(WaveformSample *samples, size_t count) {
+    // -------- Update-12: store the total of THD values
+    double sum_thd = 0.0;
+
+    // -------- Update-12: go through every waveform sample
+    for (size_t i = 0; i < count; i++) {
+
+        // add the THD value to the total
+        sum_thd += samples[i].thd;
+    }
+
+    // -------- Update-12: return the mean THD value
+    // divide by the number of samples
+    return sum_thd / count;
+}
