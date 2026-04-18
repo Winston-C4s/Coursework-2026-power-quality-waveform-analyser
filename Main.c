@@ -57,6 +57,9 @@ int main(int argc, char *argv[]) {
     //--------Update-11: Mean power factor analysis for phase A, this is the seventh analysis result added to the program
     double meanPFA = mean_power_factor_A(samples, sample_count);
     printf("Mean Power Factor A: %.2f\n", meanPFA);
+    //--------Update-12: Mean THD analysis for phase A, this is the eighth analysis result added to the program
+    double meanTHDA = mean_THD_A(samples, sample_count);
+    printf("Mean THD A: %.2f %%\n", meanTHDA);
 
     // Update-4: Print the first 10 samples (only for checking the loaded waveform data)
     for (size_t i = 0; i < 10 && i < sample_count; i++) {
