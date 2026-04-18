@@ -101,3 +101,18 @@ double mean_frequency_A(WaveformSample *samples, size_t count) {
     // divide by the number of samples
     return sum_freq / count;
 }
+double mean_power_factor_A(WaveformSample *samples, size_t count) {
+    // -------- Update-11: store the total of power factor values
+    double sum_pf = 0.0;
+
+    // -------- Update-11: go through every waveform sample
+    for (size_t i = 0; i < count; i++) {
+
+        // add the power factor value to the total
+        sum_pf += samples[i].powerFactor;
+    }
+
+    // -------- Update-11: return the mean power factor value
+    // divide by the number of samples
+    return sum_pf / count;
+}
