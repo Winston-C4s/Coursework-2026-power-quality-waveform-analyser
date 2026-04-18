@@ -29,4 +29,6 @@ int clipping_detection_A(WaveformSample *samples, size_t count);
 int compliance_check_A(WaveformSample *samples, size_t count);
 //----------- update-10: mean frequency analysis for phase A
 double mean_frequency_A(WaveformSample *samples, size_t count);
+//----------- Update-11: mean power factor analysis for phase A
+double mean_power_factor_A(WaveformSample *samples, size_t count);
 #endif
