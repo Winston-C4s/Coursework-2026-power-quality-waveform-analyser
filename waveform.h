@@ -16,21 +16,23 @@ typedef struct {
     double thd;
 } WaveformSample;
 
-// ----------- Update-5: Phase A RMS Value Calculation
-// To declare the function use to calculate RMS for phase A voltage
-double rms_A(WaveformSample *samples, size_t count);
-// ----------- Update-6: Phase A Peak-to-Peak Value Calculation
-double peak_to_peak_A(WaveformSample *samples, size_t count);
-// ----------- Update-7: Phase A DC Offset Value Calculation
-double DC_offset_A(WaveformSample *samples, size_t count);
-//----------- Update-8: clipping detection for phase A
-int clipping_detection_A(WaveformSample *samples, size_t count);
-//----------- Update-9: compliance check for phase A
-int compliance_check_A(WaveformSample *samples, size_t count);
-//----------- update-10: mean frequency analysis for phase A
-double mean_frequency_A(WaveformSample *samples, size_t count);
-//----------- Update-11: mean power factor analysis for phase A
-double mean_power_factor_A(WaveformSample *samples, size_t count);
-//----------- Update-12: mean THD analysis for phase A
-double mean_THD_A(WaveformSample *samples, size_t count);
+// ----------- Update-5: RMS Value Calculation
+// To declare the function use to calculate RMS voltage
+double rms(WaveformSample *samples, size_t count, char phase);
+// ----------- Update-6: Peak-to-Peak Value Calculation
+double peak_to_peak(WaveformSample *samples, size_t count, char phase);
+// ----------- Update-7: DC Offset Value Calculation
+double DC_offset(WaveformSample *samples, size_t count, char phase);
+//----------- Update-8: clipping detection
+int clipping_detection(WaveformSample *samples, size_t count, char phase);
+//----------- Update-9: compliance check
+int compliance_check(WaveformSample *samples, size_t count, char phase);
+//----------- update-10: mean frequency analysis
+double mean_frequency(WaveformSample *samples, size_t count);
+//----------- Update-11: mean power factor analysis 
+double mean_power_factor(WaveformSample *samples, size_t count);
+//----------- Update-12: mean THD analysis 
+double mean_THD(WaveformSample *samples, size_t count);
+//----------- Update-13: Phase B and C analysis functions
+double get_phase_voltage(WaveformSample sample, char phase);
 #endif
