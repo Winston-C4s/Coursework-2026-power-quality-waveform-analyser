@@ -28,38 +28,75 @@ int main(int argc, char *argv[]) {
     //--------Update-4: Show loading result, this helps confirm that the CSV file was read correctly
     printf("Loaded %zu samples successfully.\n", sample_count);
 
-    //--------Update-5: Calculate RMS for phase A, this is the first analysis result added to the program
-    double rmsA = rms_A(samples, sample_count);
+    // -------- Update-13: Calculate RMS for phases A, B, and C
+    double rmsA = rms(samples, sample_count, 'A');
+    double rmsB = rms(samples, sample_count, 'B');
+    double rmsC = rms(samples, sample_count, 'C');
+    //--------Update-5: Calculate RMS, this is the first analysis result added to the program
     printf("RMS Voltage A: %.2f V\n", rmsA);
-    //--------Update-6: Calculate Peak-to-Peak for phase A, this is the second analysis result added to the program
-    double ptpA = peak_to_peak_A(samples, sample_count);
+    printf("RMS Voltage B: %.2f V\n", rmsB);
+    printf("RMS Voltage C: %.2f V\n", rmsC);
+    //--------Update-6: Calculate Peak-to-Peak, this is the second analysis result added to the program
+    double ptpA = peak_to_peak(samples, sample_count, 'A');
+    double ptpB = peak_to_peak(samples, sample_count, 'B');
+    double ptpC = peak_to_peak(samples, sample_count, 'C');
     printf("Peak-to-Peak Voltage A: %.2f V\n", ptpA);
-    //--------Update-7: Calculate DC Offset for phase A, this is the third analysis result added to the program
-    double dcA = DC_offset_A(samples, sample_count);
+    printf("Peak-to-Peak Voltage B: %.2f V\n", ptpB);
+    printf("Peak-to-Peak Voltage C: %.2f V\n", ptpC);
+    //--------Update-7: Calculate DC Offset, this is the third analysis result added to the program
+    double dcA = DC_offset(samples, sample_count, 'A');
+    double dcB = DC_offset(samples, sample_count, 'B');
+    double dcC = DC_offset(samples, sample_count, 'C');
     printf("DC Offset Voltage A: %.2f V\n", dcA);
-    //--------Update-8: Clipping detection for phase A, this is the fourth analysis result added to the program
-    int clippingA = clipping_detection_A(samples, sample_count);
-    if (clippingA > 0) {
-        printf("Clipping count A: %d\n", clippingA);
+    printf("DC Offset Voltage B: %.2f V\n", dcB);
+    printf("DC Offset Voltage C: %.2f V\n", dcC);
+    //--------Update-8: Clipp ing detection, this is the fourth analysis result added to the program
+    int clipping = clipping_detection(samples, sample_count, 'A');
+    int clippingB = clipping_detection(samples, sample_count, 'B');
+    int clippingC = clipping_detection(samples, sample_count, 'C');
+    if (clipping > 0) {
+        printf("Clipping count A: %d\n", clipping);
     } else {
         printf("No clipping detected in Voltage A.\n");
     }
-    //--------Update-9: Compliance check for phase A, this is the fifth analysis result added to the program
-    int complianceA = compliance_check_A(samples, sample_count);
-    if (complianceA == 1) {
+    if (clippingB > 0) {
+        printf("Clipping count B: %d\n", clippingB);
+    } else {
+        printf("No clipping detected in Voltage B.\n");
+    }
+    if (clippingC > 0) {
+        printf("Clipping count C: %d\n", clippingC);
+    } else {
+        printf("No clipping detected in Voltage C.\n");
+    }
+    //--------Update-9: Compliance check, this is the fifth analysis result added to the program
+    int compliance = compliance_check(samples, sample_count, 'A');
+    int complianceB = compliance_check(samples, sample_count, 'B');
+    int complianceC = compliance_check(samples, sample_count, 'C');
+    if (compliance == 1) {
         printf("Voltage A is compliant\n");
     } else {
         printf("Voltage A is not compliant\n");
     }
-        //--------Update-10: Mean frequency analysis for phase A, this is the sixth analysis result added to the program
-    double meanFreqA = mean_frequency_A(samples, sample_count);
-    printf("Mean Frequency A: %.2f Hz\n", meanFreqA);
-    //--------Update-11: Mean power factor analysis for phase A, this is the seventh analysis result added to the program
-    double meanPFA = mean_power_factor_A(samples, sample_count);
-    printf("Mean Power Factor A: %.2f\n", meanPFA);
-    //--------Update-12: Mean THD analysis for phase A, this is the eighth analysis result added to the program
-    double meanTHDA = mean_THD_A(samples, sample_count);
-    printf("Mean THD A: %.2f %%\n", meanTHDA);
+    if (complianceB == 1) {
+        printf("Voltage B is compliant\n");
+    } else {
+        printf("Voltage B is not compliant\n");
+    }
+    if (complianceC == 1) {
+        printf("Voltage C is compliant\n");
+    } else {
+        printf("Voltage C is not compliant\n");
+    }
+        //--------Update-10: Mean frequency analysis, this is the sixth analysis result added to the program
+    double meanFreq = mean_frequency(samples, sample_count);
+    printf("Mean Frequency: %.2f Hz\n", meanFreq);
+    //--------Update-11: Mean power factor analysis, this is the seventh analysis result added to the program
+    double meanPF = mean_power_factor(samples, sample_count);
+    printf("Mean Power Factor: %.2f\n", meanPF);
+    //--------Update-12: Mean THD analysis, this is the eighth analysis result added to the program
+    double meanTHD = mean_THD(samples, sample_count);
+    printf("Mean THD: %.2f %%\n", meanTHD);
 
     // Update-4: Print the first 10 samples (only for checking the loaded waveform data)
     for (size_t i = 0; i < 10 && i < sample_count; i++) {
