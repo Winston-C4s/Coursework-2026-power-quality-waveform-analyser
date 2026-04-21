@@ -319,4 +319,26 @@ The function goes through all waveform samples, adds all THD values together, an
 # Results
 - Mean THD A: 2.09%
 
+# Update 13 – Extend Analysis from Phase A to Phase B and C
+
+In this update, I changed the program so it no longer only works on phase A. The same voltage analysis functions can now also be used for phase B and phase C.
+
+# Objective
+The aim of this update was to make the analyser work more like a proper three-phase waveform analysis program.
+
+# Implementation
+- Added `get_phase_voltage()` to pick the correct voltage field
+- Passed a phase character (`'A'`, `'B'`, `'C'`) into the main voltage analysis functions
+- Reused the same calculation functions for all three phases
+- Updated `Main.c` to display the results for all three phases
+
+# Code Explanation
+Instead of writing separate functions for each phase, I used one helper function to select the correct voltage value. This made it easier to reuse the same RMS, peak-to-peak, DC offset, clipping detection, and compliance check logic.
+
+# Results
+The analyser now outputs results for:
+- phase A
+- phase B
+- phase C
+
 10. References
