@@ -1,10 +1,24 @@
 #include <math.h>
 #include "waveform.h"
-
+//-----------Update-13: Phase B and C analysis functions
+double get_phase_voltage(WaveformSample sample, char phase) {
+    switch (phase) {
+        case 'A':
+            return sample.voltageA;
+        case 'B':
+            return sample.voltageB;
+        case 'C':
+            return sample.voltageC;
+        default:
+            return 0.0; // Return 0 for invalid phase input
+    }
+}
 // ----------- Update-5: Phase A RMS Value Calculation
 
-double rms_A(WaveformSample *samples, size_t count) {
-
+double rms(WaveformSample *samples, size_t count, char phase) {
+    if (count == 0) {
+    return 0.0;
+    }
     // -------- Update-5: Store the total of squared voltage values
     double sum_sq = 0.0;
 
@@ -12,38 +26,40 @@ double rms_A(WaveformSample *samples, size_t count) {
     for (size_t i = 0; i < count; i++) {
 
         // square the phase A voltage and add it to the total
-        sum_sq += samples[i].voltageA * samples[i].voltageA;
+        sum_sq += get_phase_voltage(samples[i], phase) * get_phase_voltage(samples[i], phase);
     }
 
     // -------- Update-5: Return the RMS value
     // divide by the number of samples, and then take the square root
     return sqrt(sum_sq / count);
 }
-double peak_to_peak_A(WaveformSample *samples, size_t count) {
+double peak_to_peak(WaveformSample *samples, size_t count, char phase) {
     if (count == 0) {
     return 0.0;
 }
     // -------- Update-6: Store the total of max and min voltage values
-    double max_volt = samples[0].voltageA;
-    double min_volt = samples[0].voltageA;
+    double max_volt = get_phase_voltage(samples[0], phase);
+    double min_volt = get_phase_voltage(samples[0], phase);
 
     // -------- Update-6: Go through every waveform sample
     for (size_t i = 0; i < count; i++) {
 
         // update max and min voltage values
-        if (samples[i].voltageA > max_volt) {
-            max_volt = samples[i].voltageA;
+        if (get_phase_voltage(samples[i], phase) > max_volt) {
+            max_volt = get_phase_voltage(samples[i], phase);
         }
-        if (samples[i].voltageA < min_volt) {
-            min_volt = samples[i].voltageA;
+        if (get_phase_voltage(samples[i], phase) < min_volt) {
+            min_volt = get_phase_voltage(samples[i], phase);
         }
     }
 
     // -------- Update-6: Return the peak-to-peak value
     return max_volt - min_volt;
 }
-double DC_offset_A(WaveformSample *samples, size_t count) {
-
+double DC_offset(WaveformSample *samples, size_t count, char phase) {
+        if (count == 0) {
+    return 0.0;
+    }
     // -------- Update-7: dc offset is the average voltage value, so we need to store the total of voltage values
     double sum = 0.0;
 
@@ -51,14 +67,14 @@ double DC_offset_A(WaveformSample *samples, size_t count) {
     for (size_t i = 0; i < count; i++) {
 
         // add the phase A voltage to the total
-        sum += samples[i].voltageA;
+        sum += get_phase_voltage(samples[i], phase);
     }
 
     // -------- Update-7: Return the DC offset value
     // divide by the number of samples
     return sum / count;
 }
-int clipping_detection_A(WaveformSample *samples, size_t count) {
+int clipping_detection(WaveformSample *samples, size_t count, char phase) {
 
     // -------- Update-8: store how many clipped samples are found
     int clip_count = 0;
@@ -67,7 +83,7 @@ int clipping_detection_A(WaveformSample *samples, size_t count) {
     for (size_t i = 0; i < count; i++) {
 
         // if phase A voltage reaches the clipping threshold, count it
-        if (samples[i].voltageA >= 324.9 || samples[i].voltageA <= -324.9) {
+        if (get_phase_voltage(samples[i], phase) >= 324.9 || get_phase_voltage(samples[i], phase) <= -324.9) {
             clip_count++;
         }
     }
@@ -75,9 +91,9 @@ int clipping_detection_A(WaveformSample *samples, size_t count) {
     // -------- Update-8: return the number of clipped samples
     return clip_count;
 }
-    int compliance_check_A(WaveformSample *samples, size_t count) {
-        // -------- Update-9: calculate the RMS value for phase A
-        double rms_value = rms_A(samples, count);
+    int compliance_check(WaveformSample *samples, size_t count, char phase) {
+        // -------- Update-9: calculate the RMS value for the specified phase
+        double rms_value = rms(samples, count, phase);
 
         // -------- Update-9: if phase A voltage exceeds the compliance limit, count it
         if (rms_value >= 207.0 && rms_value <= 253.0) {
@@ -86,7 +102,7 @@ int clipping_detection_A(WaveformSample *samples, size_t count) {
             return 0; // if is non-compliant
         }
     }
-double mean_frequency_A(WaveformSample *samples, size_t count) {
+double mean_frequency(WaveformSample *samples, size_t count) {
     // -------- Update-10: store the total of frequency values
     double sum_freq = 0.0;
 
@@ -101,7 +117,7 @@ double mean_frequency_A(WaveformSample *samples, size_t count) {
     // divide by the number of samples
     return sum_freq / count;
 }
-double mean_power_factor_A(WaveformSample *samples, size_t count) {
+double mean_power_factor(WaveformSample *samples, size_t count) {
     // -------- Update-11: store the total of power factor values
     double sum_pf = 0.0;
 
@@ -116,7 +132,7 @@ double mean_power_factor_A(WaveformSample *samples, size_t count) {
     // divide by the number of samples
     return sum_pf / count;
 }
-double mean_THD_A(WaveformSample *samples, size_t count) {
+double mean_THD(WaveformSample *samples, size_t count) {
     // -------- Update-12: store the total of THD values
     double sum_thd = 0.0;
 
