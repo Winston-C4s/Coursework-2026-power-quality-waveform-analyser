@@ -125,6 +125,69 @@ int main(int argc, char *argv[]) {
     printf("----------------------------------------------\n");
     //----Update-4: Free allocated memory, always free memory after finishing the function
     free(samples);
+//--------Update-15: Write results to a text file, this is the final step of the program to save the analysis results for later review
+FILE *output = fopen("results.txt", "w");
+if (output == NULL) {
+    //--if the file cannot be created, print an error message and exit
+    printf("Error: could not create the output file.\n");
+    free(samples);
+    return 1;
+}
+fprintf(output, "Power Quality Analysis Results\n");
+fprintf(output, "Input file: power_quality_log.csv\n");
+fprintf(output, "Samples loaded: 1000\n");
+fprintf(output, "Analysis Results:\n");
+fprintf(output, "RMS Voltage A: %.2f V\n", rmsA);
+fprintf(output, "RMS Voltage B: %.2f V\n", rmsB);
+fprintf(output, "RMS Voltage C: %.2f V\n", rmsC);
+fprintf(output, "Peak-to-Peak Voltage A: %.2f V\n", ptpA);
+fprintf(output, "Peak-to-Peak Voltage B: %.2f V\n", ptpB);
+fprintf(output, "Peak-to-Peak Voltage C: %.2f V\n", ptpC);
+fprintf(output, "DC Offset Voltage A: %.2f V\n", dcA);
+fprintf(output, "DC Offset Voltage B: %.2f V\n", dcB);
+fprintf(output, "DC Offset Voltage C: %.2f V\n", dcC);
 
+if (clipping > 0) {
+    fprintf(output, "Clipping count A: %d\n", clipping);
+} else {
+    fprintf(output, "No clipping detected in Voltage A.\n");
+}
+
+if (clippingB > 0) {
+    fprintf(output, "Clipping count B: %d\n", clippingB);
+} else {
+    fprintf(output, "No clipping detected in Voltage B.\n");
+}
+
+if (clippingC > 0) {
+    fprintf(output, "Clipping count C: %d\n", clippingC);
+} else {
+    fprintf(output, "No clipping detected in Voltage C.\n");
+}
+
+if (compliance == 1) {
+    fprintf(output, "Voltage A is compliant\n");
+} else {
+    fprintf(output, "Voltage A is not compliant\n");
+}
+
+if (complianceB == 1) {
+    fprintf(output, "Voltage B is compliant\n");
+} else {
+    fprintf(output, "Voltage B is not compliant\n");
+}
+
+if (complianceC == 1) {
+    fprintf(output, "Voltage C is compliant\n");
+} else {
+    fprintf(output, "Voltage C is not compliant\n");
+}
+
+fprintf(output, "Mean Frequency: %.2f Hz\n", meanFreq);
+fprintf(output, "Mean Power Factor: %.2f\n", meanPF);
+fprintf(output, "Mean THD: %.2f %%\n", meanTHD);
+
+fclose(output);
+printf("Results have been written to results.txt\n");
     return 0;
 }
