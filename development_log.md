@@ -159,11 +159,6 @@ The function loops through all waveform samples:
 - Peak-to-Peak Voltage A: 650.00 V
 - This result is close to the expected value for a 230 V RMS waveform
 
-# Implementation
-- Added a new function `calculate_rms_A()` to `waveform.c`
-- Declared a new function in `waveform.h` for use in other files
-- Called the function in `Main.c` and printed the results
-
 # Update 7 – Phase A DC Offset Calculation
 
 In this update, I added the DC offset calculation for phase A voltage
