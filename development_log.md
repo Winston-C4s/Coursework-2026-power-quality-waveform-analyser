@@ -351,6 +351,23 @@ The aim of this step was to make the analysis output look more clear.
 # Results
 The program output is now displayed in a more readable format instead of one long block of text.
 
+# Update 15 – Save Results to a Text File
+
+In this update, I made the program write the analysis results into `results.txt`.
+
+# Objective
+The aim of this step was to save the final results into a file, so they do not only appear in the terminal.
+
+# Implementation
+- Created `results.txt`
+- Used `fprintf()` to write the analysis results into it
+- Added the main voltage analysis results for phases A, B, and C
+- Added other values such as frequency, power factor, and THD
+- Closed the file after writing
+
+# Results
+The program now generates a text report file called `results.txt`.
+
 10. References
 
 1. UWE Bristol, Programming for Engineers Coursework Brief, 2026.
