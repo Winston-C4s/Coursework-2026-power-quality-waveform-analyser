@@ -350,4 +350,9 @@ The aim of this step was to make the analysis output look more clear.
 
 # Results
 The program output is now displayed in a more readable format instead of one long block of text.
+
 10. References
+
+1. UWE Bristol, Programming for Engineers Coursework Brief, 2026.
+2. Power Quality Waveform Dataset / Reference Sheet provided with coursework materials.
+3. C Standard Library documentation for `fopen`, `fgets`, `sscanf`, `malloc`, and `sqrt`.
