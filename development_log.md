@@ -341,4 +341,18 @@ The analyser now outputs results for:
 - phase B
 - phase C
 
+# Update 14 – Better Output Formatting
+
+In this update, I cleaned up the terminal output so the program results are easier to read.
+
+# Objective
+The aim of this step was to make the analysis output look more clear.
+# Implementation
+- Added output headings
+- Added separator lines
+- Grouped similar results into the same section
+- Made the first 10 sample output easier to check
+
+# Results
+The program output is now displayed in a more readable format instead of one long block of text.
 10. References
