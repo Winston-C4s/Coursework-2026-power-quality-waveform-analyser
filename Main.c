@@ -133,6 +133,7 @@ if (output == NULL) {
     free(samples);
     return 1;
 }
+//--Write the analysis results to the file, this includes all the results calculated in the previous steps
 fprintf(output, "Power Quality Analysis Results\n");
 fprintf(output, "Input file: power_quality_log.csv\n");
 fprintf(output, "Samples loaded: 1000\n");
@@ -146,7 +147,7 @@ fprintf(output, "Peak-to-Peak Voltage C: %.2f V\n", ptpC);
 fprintf(output, "DC Offset Voltage A: %.2f V\n", dcA);
 fprintf(output, "DC Offset Voltage B: %.2f V\n", dcB);
 fprintf(output, "DC Offset Voltage C: %.2f V\n", dcC);
-
+// Clipping results
 if (clipping > 0) {
     fprintf(output, "Clipping count A: %d\n", clipping);
 } else {
@@ -164,7 +165,7 @@ if (clippingC > 0) {
 } else {
     fprintf(output, "No clipping detected in Voltage C.\n");
 }
-
+// Compliance results
 if (compliance == 1) {
     fprintf(output, "Voltage A is compliant\n");
 } else {
@@ -182,11 +183,11 @@ if (complianceC == 1) {
 } else {
     fprintf(output, "Voltage C is not compliant\n");
 }
-
+// Mean frequency, power factor, and THD results
 fprintf(output, "Mean Frequency: %.2f Hz\n", meanFreq);
 fprintf(output, "Mean Power Factor: %.2f\n", meanPF);
 fprintf(output, "Mean THD: %.2f %%\n", meanTHD);
-
+// Close the file after writing, this is important to ensure that all data is saved properly
 fclose(output);
 printf("Results have been written to results.txt\n");
     return 0;
