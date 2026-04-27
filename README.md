@@ -8,9 +8,15 @@ The program loads waveform samples and displays basic information to verify that
 
 #Features
 - Load waveform data from CSV files
-- Store data using structured data types
-- Display example values ​​(time and voltage)
-- Basic error handling for file input
+- Compute RMS voltage for phases A, B, and C
+- Compute peak-to-peak voltage for phases A, B, and C
+- Compute DC offset for phases A, B, and C
+- Detect clipping events for phases A, B, and C
+- Check voltage compliance for phases A, B, and C
+- Compute mean frequency
+- Compute mean power factor
+- Compute mean THD
+- Write a structured plain-text report to results.txt
 
 #Project Structure
 - `Main.c` – Program entry point
@@ -20,10 +26,13 @@ The program loads waveform samples and displays basic information to verify that
 - `development_log.md` – Development progress tracking
 
 #Current Status
-Initial version complete:
-- Implemented CSV file loading
-- Example output works correctly
-- Code includes detailed comments for easy learning and explanation
+Current Status
+- CSV loading implemented
+- Three-phase voltage analysis implemented
+- RMS, peak-to-peak, DC offset, clipping, and compliance implemented
+- Mean frequency, mean power factor, and mean THD implemented
+- Results written to results.txt
+- Development log included
 
 #Future Work
 - Add waveform analysis (RMS, frequency, etc.)
@@ -44,3 +53,7 @@ Initial version complete:
 - Add peak-to-peak analysis
 - Detect DC offset
 - Implement clipping detection
+
+-how to run?
+gcc Main.c io.c waveform.c -o analyser.exe -lm
+.\analyser.exe power_quality_log.csv
