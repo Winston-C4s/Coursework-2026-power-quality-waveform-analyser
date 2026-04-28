@@ -9,7 +9,7 @@ ________________________________________
 
 
 2. Program Design (Pseudocode/Flowcharts)
-3. CSV file
+CSV file
 load file
 save to struct array
 Analysis of three-phase voltage
@@ -44,16 +44,24 @@ Get command-line argument
                ↓
              End
 
-4. Function Description
+3. Function Description
 
-5. Evidence of Unit Testing
+4. Evidence of Unit Testing
+# rms() in waveform.c
+RMS A expected about 229.81 V, result passed
 
+# Peak-to-Peak Calculation in waveform.c
+Peak-to-peak A expected about 650.0 V, result passed
 
-6. Evidence of Integration Testing
+# DC Offset Calculation in waveform.c
+DC offset A expected about 0.00 V, result passed
 
+5. Evidence of Integration Testing
+load_csv_data() + rms() passed
+load_csv_data() + results.txt output passed
+generic phase functions + main output
 
-
-7. Evidence of Version Control
+6. Evidence of Version Control
 # Update 1 – Project Setup
 In this update, I've set up the initial project structure
 
@@ -342,6 +350,7 @@ In this update, I cleaned up the terminal output so the program results are easi
 
 # Objective
 The aim of this step was to make the analysis output look more clear.
+
 # Implementation
 - Added output headings
 - Added separator lines
@@ -373,11 +382,25 @@ The program now generates a text report file called `results.txt`.
 The program opens a text file in write mode and stores the final calculated results inside it.
 This makes the program easier to use, because the results can be reviewed later without rerunning the program.
 
-# Results
-The analyser now generates a text report file called `results.txt`.
-
-10. References
+7. References
 
 1. UWE Bristol, Programming for Engineers Coursework Brief, 2026.
 2. Power Quality Waveform Dataset / Reference Sheet provided with coursework materials.
 3. C Standard Library documentation for `fopen`, `fgets`, `sscanf`, `malloc`, and `sqrt`.
+
+8. Debugging Challenge
+# Debugging Challenge – In update [13]I Had Generic Code, but the Program Still Only Printed Phase A
+
+A bug I remember clearly happened when I changed the code from phase A only into a generic three-phase version.
+
+# Symptom
+The helper function and generic voltage analysis functions were already added, but the output still only showed phase A.
+
+# Diagnosis
+After checking the code, I realised the issue was in `Main.c`. I had updated the calculation side, but I forgot to declare and print the phase B and phase C results.
+
+# Fix
+I added the missing result variables and output lines for phases B and C in `Main.c`.
+
+# Reflection
+This experience taught me that when changing code from a single-phase version to a generic version, the update must be applied to the entire program, not just a single file and double check the update is applied or not 
