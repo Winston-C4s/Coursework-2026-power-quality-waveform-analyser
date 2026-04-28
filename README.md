@@ -1,6 +1,5 @@
-# Coursework-2026-power-quality-waveform-analyser-
+# Coursework 2026 Power Quality Waveform Analyser
 C coursework project for analysing 3 phase power quality waveform data
-4/4 I'll Initial project setup with README, CMakeLists, and source file structure
 
 #Overview
 This project is a C-language application for analyzing three-phase power quality waveform data from a CSV file.
@@ -26,7 +25,6 @@ The program loads waveform samples and displays basic information to verify that
 - `development_log.md` – Development progress tracking
 
 #Current Status
-Current Status
 - CSV loading implemented
 - Three-phase voltage analysis implemented
 - RMS, peak-to-peak, DC offset, clipping, and compliance implemented
@@ -34,26 +32,23 @@ Current Status
 - Results written to results.txt
 - Development log included
 
-#Future Work
-- Add waveform analysis (RMS, frequency, etc.)
-- Improve the robustness of CSV file parsing
-- Visualization or other processing
-
 #How it Works
 1. The program takes a CSV file name as input from the command line
 2. The file is read using `load_csv_data()`
-3. The Data is stored as an array of `WaveformSample`
-4. The first few samples are printed to verify correctness
-5. Allocated memory is freed before the program exits
+3. The data is stored as an array of `WaveformSample`
+4. The program computes waveform analysis results for the three phases
+5. The results are displayed in the terminal
+6. The results are written to `results.txt`
+7. Allocated memory is freed before the program exits
 
-# Future Work
-- Add waveform analysis (RMS, frequency)
-- Add more advanced processing or visualisation
-- Implement RMS calculation
-- Add peak-to-peak analysis
-- Detect DC offset
-- Implement clipping detection
+## Future Work
+- Improve the robustness of CSV file parsing
+- Add extra validation for invalid or empty input files
+- Improve report formatting further
+- Add standard deviation as an extension feature
+- Add visualisation or further waveform processing
 
 -how to run?
 gcc Main.c io.c waveform.c -o analyser.exe -lm
+
 .\analyser.exe power_quality_log.csv
