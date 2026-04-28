@@ -368,20 +368,6 @@ The aim of this step was to save the final results into a file, so they do not o
 # Results
 The program now generates a text report file called `results.txt`.
 
-# Update 15 – Save Results to a Text File
-
-In this update, I made the program write the final analysis results into `results.txt`.
-
-# Objective
-The aim of this step was to save the analysis results into a file, so they are not only shown in the terminal.
-
-# Implementation
-- Created `results.txt`
-- Used `fprintf()` to write all main results into the file
-- Added the voltage analysis results for phases A, B, and C
-- Added clipping and compliance results
-- Added mean frequency, mean power factor, and mean THD
-- Closed the file after writing
 
 # Code Explanation
 The program opens a text file in write mode and stores the final calculated results inside it.
