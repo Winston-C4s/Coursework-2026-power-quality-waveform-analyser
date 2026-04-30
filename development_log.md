@@ -382,6 +382,29 @@ The program now generates a text report file called `results.txt`.
 The program opens a text file in write mode and stores the final calculated results inside it.
 This makes the program easier to use, because the results can be reviewed later without rerunning the program.
 
+# Update 16 – Implement Pointer in RMS Function
+
+In this update, I redesign the rms() function to use pointer arithmetic instead of array indexing, fulfilling the course requirement for "pointer-based data access".
+
+# Objective
+
+To demonstrate understanding of C pointers by using pointer arithmetic (ptr++, *ptr, ptr < end) instead of simple array indexing (samples[i]).
+
+# Implementation
+
+- Replaced the for loop with a while loop
+- Created two pointers: (ptr) pointing to the start and [end] pointing to the end of the array
+- Used pointer arithmetic: pointer increment (ptr++), pointer dereference (*ptr), and pointer comparison (ptr < end)
+- Refactored the array access from samples[i] to (*ptr)
+- Function behavior remains unchanged
+
+# Results
+
+The rms() function now uses pointer arithmetic as required. Testing confirms:
+- Phase A RMS: 229.81 V 
+- Phase B RMS: 229.81 V 
+- Phase C RMS: 229.81 V
+
 7. References
 
 1. UWE Bristol, Programming for Engineers Coursework Brief, 2026.
