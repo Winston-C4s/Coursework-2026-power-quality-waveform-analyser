@@ -17,20 +17,21 @@ double get_phase_voltage(WaveformSample sample, char phase) {
 
 double rms(WaveformSample *samples, size_t count, char phase) {
     if (count == 0) {
-    return 0.0;
+        return 0.0;
     }
-    // -------- Update-5: Store the total of squared voltage values
+    
     double sum_sq = 0.0;
-
-    // -------- Update-5: Go through every waveform sample
-    for (size_t i = 0; i < count; i++) {
-
-        // square the phase A voltage and add it to the total
-        sum_sq += get_phase_voltage(samples[i], phase) * get_phase_voltage(samples[i], phase);
+    
+    //--------Update-16 change the loop to pointer arithmetic for better performance
+    WaveformSample *ptr = samples;
+    WaveformSample *end = samples + count;
+    
+    while (ptr < end) {
+        double v = get_phase_voltage(*ptr, phase);
+        sum_sq += v * v;
+        ptr++;
     }
-
-    // -------- Update-5: Return the RMS value
-    // divide by the number of samples, and then take the square root
+    
     return sqrt(sum_sq / count);
 }
 double peak_to_peak(WaveformSample *samples, size_t count, char phase) {
