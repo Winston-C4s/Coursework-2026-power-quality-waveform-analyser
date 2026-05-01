@@ -427,3 +427,26 @@ I added the missing result variables and output lines for phases B and C in `Mai
 
 # Reflection
 This experience taught me that when changing code from a single-phase version to a generic version, the update must be applied to the entire program, not just a single file and double check the update is applied or not 
+
+# Debugging Challenge – In update [17] Compiler Warning: Use-After-Free on free()
+When I compiled the code with -Wall -Wextra flags to improve code quality, the compiler issued a warning about using memory after it was freed
+(gcc main.c io.c waveform.c -o analyser.exe -lm -std=c99 -Wall -Wextra)
+
+# Symptom
+The compiler produced this warning:
+warning: pointer 'samples' may be used after 'free' [-Wuse-after-free]
+The program still ran correctly, but the warning indicated a potential bug that could cause unpredictable behavior on different systems.
+
+# Diagnosis
+I traced through the code in main.c to understand when samples was being freed and when it was still being used. I realized that the order of operations was problematic. The issue was that some operations dependent on the samples pointer were happening after free(samples) was called.
+
+# Fix
+I reorganized the code in main.c to ensure all uses of samples completed before calling free(). The correct order is:
+Load data with malloc()
+Calculate all results (RMS, peak-to-peak, etc.)
+Print all output to terminal and write to results.txt
+Only then call free(samples)
+
+By moving all fprintf() and printf() statements before the free() call, the warning disappeared and the code became safer.
+Reflection
+This experience showed me the value of using compiler flags like -Wall -Wextra. These flags catch subtle memory management issues that might not cause immediate crashes but indicate poor practice. The warning helped me understand the importance of carefully managing the lifetime of allocated memory. Well, even though the program worked without the fix, addressing the warning made the code more robust and safer for different environments.
