@@ -43,6 +43,7 @@ Get command-line argument
            Free allocated memory
                ↓
              End
+<img width="1472" height="2440" alt="image" src="https://github.com/user-attachments/assets/c7ed21cb-bb79-4901-870e-bdf4cfa47465" />
 
 3. Function Description
 
