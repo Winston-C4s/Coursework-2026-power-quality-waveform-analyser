@@ -123,14 +123,11 @@ int main(int argc, char *argv[]) {
                 printf("\n");
     }
     printf("----------------------------------------------\n");
-    //----Update-4: Free allocated memory, always free memory after finishing the function
-    free(samples);
 //--------Update-15: Write results to a text file, this is the final step of the program to save the analysis results for later review
 FILE *output = fopen("results.txt", "w");
 if (output == NULL) {
     //--if the file cannot be created, print an error message and exit
     printf("Error: could not create the output file.\n");
-    free(samples);
     return 1;
 }
 //--Write the analysis results to the file, this includes all the results calculated in the previous steps
@@ -190,5 +187,8 @@ fprintf(output, "Mean THD: %.2f %%\n", meanTHD);
 // Close the file after writing, this is important to ensure that all data is saved properly
 fclose(output);
 printf("Results have been written to results.txt\n");
+    //----Update-4: Free allocated memory, always free memory after finishing the function
+free(samples);
+samples = NULL;
     return 0;
 }
